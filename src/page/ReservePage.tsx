@@ -17,8 +17,8 @@ const ReservePage = () => {
   return (
     <div className="w-screen h-screen top-0 overflow-x-hidden z-0">
       <Navbar />
-      <div className="flex justify-center w-screen mt-3">
-        <div className="w-4/5 h-fit bg-white drop-shadow-lg rounded-lg mb-10">
+      <div className="flex justify-center w-screen mt-16">
+        <div className="w-4/5 h-fit bg-white drop-shadow-lg rounded-lg my-10">
           <div className="w-full">
             <img
               src="https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675"
@@ -68,8 +68,8 @@ const ReservePage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center p-10 w-2/5">
-              <div className="w-full h-fit border-2 border-primary rounded-xl flex justify-center drop-shadow-lg">
+            <div className="flex flex-col justify-center p-10 w-2/5">
+              <div className="w-full h-fit border-2 border-primary rounded-xl flex justify-center drop-shadow-lg mb-3">
                 <div>
                   <p className="mt-3">
                     <span className="text-primary font-bold text-3xl">
@@ -82,7 +82,7 @@ const ReservePage = () => {
                       selected={DateCheckin}
                       onChange={handleDateCheckin}
                       dateFormat="dd/MM/yyyy"
-                      placeholderText="date Checkin"
+                      placeholderText="Tanggal Check-in"
                       className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
                     />
                   </div>
@@ -91,13 +91,22 @@ const ReservePage = () => {
                       selected={DateCheckout}
                       onChange={handleDateCheckout}
                       dateFormat="dd/MM/yyyy"
-                      placeholderText="date Checkout"
+                      placeholderText="Tanggal Check-out"
                       className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
                     />
                   </div>
-                  <button className="btn btn-warning mb-5 w-full">
-                    Pesan
-                  </button>
+                  <button className="btn btn-ghost bg-primary text-white mb-5 w-full">Pesan</button>
+                </div>
+              </div>
+              <div className="px-16 py-5 border-2 border-primary rounded-xl drop-shadow-lg">
+                <div>
+                  <p className="">
+                    Rp199.000 x 2 malam
+                  </p>
+                  <hr className="border border-primary my-3" />
+                  <p className="">
+                    Total Rp398.000
+                  </p>
                 </div>
               </div>
             </div>
