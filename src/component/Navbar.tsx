@@ -1,39 +1,65 @@
 import { BsFillBellFill } from "react-icons/bs";
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+interface NavbarProps {
+    children?: React.ReactNode;
+}
+
+const Navbar: FC<NavbarProps> = ({ children }) => {
     return (
         <>
-        <div className='absolute w-full sticky top-0 overflow-x-hidden z-20'>
-            <div className="navbar bg-primary flex space-x-4 justify-center drop-shadow-md">
-                <div className="flex-1">
-                    <a className="btn btn-ghost normal-case text-xl">AirBnB</a>
-                </div>
-
-                <div className="form-control">
-                    <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto bg-white" />
-                </div>
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle">
-                        <div className="indicator">
-                            
-                            <BsFillBellFill className="w-5 h-5"/>
-                            <span className="badge badge-sm indicator-item">8</span>
+            <div className='absolute w-full h-screen top-0 overflow-x-hidden '>
+                <div className="navbar bg-base-100 shadow-xl sticky top-0 z-20">
+                    <div className="navbar-start">
+                        <div className="dropdown">
+                            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                <Link to="/"><a>Home</a></Link>
+                                <li><a>Saved</a></li>
+                            </ul>
                         </div>
-                    </label>
-                   
-                </div>
-                <div className="gap-2">
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
-                            </div>
-                        </label>
-                    
+                        <a className="btn btn-ghost normal-case text-xl">AirBnB</a>
+                    </div>
+                    <div className="navbar-center hidden lg:flex">
+                        <ul className="menu menu-horizontal px-1">
+                            <li><Link to="/">Home</Link></li>
+                            <li><a>Saved</a></li>
+                        </ul>
+                    </div>
+                    <div className="navbar-end">
+                        <div className="mr-3">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle text-2xl ">
+                                <div className="indicator">
+                                    <span><BsFillBellFill/></span>
+                                    <span className="badge badge-secondary badge-sm indicator-item">8</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <Link to="/profil" className="justify-between">
+                                        Profile
+                                        <span className="badge">New</span>
+                                    </Link>
+                                </li>
+                                <li><a>Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                <div>
+                    {children}
+                </div>
             </div>
-        </div>
         </>
     )
 }
