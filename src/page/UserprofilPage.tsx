@@ -19,9 +19,9 @@ const UserprofilPage = () => {
 
     return (
         <div className='w-screen h-screen top-0 overflow-x-hidden z-0'>
-            <Navbar />
+            <Navbar >
             <div className='flex justify-center h-fit'>
-                <div className='flex justify-center w-1/4 h-full drop-shadow-lg p-4 sticky top-0'>
+                <div className='flex justify-center w-1/4 h-screen shadow-lg p-4 sticky top-5'>
                     <div>
                         <div className="avatar">
                             <div className="w-52 rounded-full flex justify-center ml-3">
@@ -111,6 +111,8 @@ const UserprofilPage = () => {
                         </div>
                     </div>}
             </div>
+            </Navbar>
+
             {showPopup && (
                 <div className="w-screen h-fit bg-gray-800 bg-opacity-50 absolute top-0 z-20 overflow-x-hidden ">
                     <div className='flex justify-center items-center h-full mt-10'>

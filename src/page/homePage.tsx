@@ -4,7 +4,7 @@ import Card from '../component/Card'
 const HomePage = () => {
   return (
     <div className='w-screen h-screen top-0 overflow-x-hidden z-0'>
-        <Navbar/>
+        <Navbar>
         <div className='flex flex-wrap justify-center mt-10 gap-3 mb-10 p-3'>
             <Card 
             image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
@@ -51,6 +51,7 @@ const HomePage = () => {
            
 
         </div>
+        </Navbar>
         
     </div>
   )
