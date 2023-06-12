@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        // Contoh warna baru
+        primary: '#BE8800',
+
+
+       
+        
+      },
+    },
   },
   plugins: [require('daisyui'),],
 }
