@@ -90,7 +90,7 @@ const RegisterPage: React.FC = () => {
           </h2>
           <p className="text-black mb-8 text-center">
             Sudah memiliki akun?{" "}
-            <Link to="/login" className="text-main-color">
+            <Link to="/login" className="text-primary">
               Masuk
             </Link>
           </p>
@@ -101,7 +101,7 @@ const RegisterPage: React.FC = () => {
                   type="text"
                   id="firstName"
                   placeholder="Nama Depan"
-                  className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                  className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                   value={first_name}
                   onChange={handleFirstNameChange}
                   required
@@ -112,7 +112,7 @@ const RegisterPage: React.FC = () => {
                   type="text"
                   id="lastName"
                   placeholder="Nama Belakang"
-                  className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                  className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                   value={last_name}
                   onChange={handleLastNameChange}
                   required
@@ -124,7 +124,7 @@ const RegisterPage: React.FC = () => {
                 type="email"
                 id="email"
                 placeholder="Email"
-                className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                 value={email}
                 onChange={handleEmailChange}
                 required
@@ -135,7 +135,7 @@ const RegisterPage: React.FC = () => {
                 type="tel"
                 id="phone"
                 placeholder="Nomor Handphone"
-                className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                 value={phone}
                 onChange={handlePhoneChange}
                 required
@@ -145,7 +145,7 @@ const RegisterPage: React.FC = () => {
               <div>
                 <select
                   id="gender"
-                  className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                  className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                   value={gender}
                   onChange={handleGenderChange}
                   required
@@ -159,7 +159,7 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="date"
                   id="birthdate"
-                  className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                  className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                   value={birth_date}
                   onChange={handleBirthdateChange}
                   required
@@ -170,7 +170,7 @@ const RegisterPage: React.FC = () => {
               <textarea
                 id="address"
                 placeholder="Alamat"
-                className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md resize-none"
+                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md resize-none"
                 value={address}
                 onChange={handleAddressChange}
                 required
@@ -182,7 +182,7 @@ const RegisterPage: React.FC = () => {
                   type="password"
                   id="password"
                   placeholder="Password"
-                  className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                  className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                   value={password}
                   onChange={handlePasswordChange}
                   required
@@ -193,7 +193,7 @@ const RegisterPage: React.FC = () => {
                   type="password"
                   id="confirmPassword"
                   placeholder="Konfirmasi Password"
-                  className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                  className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
                   required
@@ -205,7 +205,7 @@ const RegisterPage: React.FC = () => {
             </div>
             <button
               type="submit"
-              className={`btn btn-ghost bg-main-color text-white py-2 px-4 rounded-md w-full hover:bg-black mt-6 ${
+              className={`btn btn-ghost bg-primary text-white py-2 px-4 rounded-md w-full drop-shadow-xl hover:bg-black mt-6 ${
                 isButtonDisabled
                   ? "disabled:bg-gray-300 cursor-not-allowed"
                   : ""

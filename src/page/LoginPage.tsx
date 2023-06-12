@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
               <h2 className="text-2xl font-bold text-black">Masuk</h2>
             </div>
             <div className="basis-1/2 flex justify-end pt-2">
-              <Link to="/register" className="text-main-color">
+              <Link to="/register" className="text-primary">
                 Daftar
               </Link>
             </div>
@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
                 type="email"
                 id="email"
                 placeholder="Email"
-                className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                 value={email}
                 onChange={handleEmailChange}
                 required
@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
                 type="password"
                 id="password"
                 placeholder="Password"
-                className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
+                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                 value={password}
                 onChange={handlePasswordChange}
                 required
@@ -64,7 +64,7 @@ const LoginPage: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="btn btn-ghost bg-main-color text-white py-2 px-4 rounded-md w-full hover:bg-black mt-6"
+              className="btn btn-ghost bg-primary text-white py-2 px-4 rounded-md w-full drop-shadow-xl hover:bg-black mt-6"
             >
               Masuk
             </button>
