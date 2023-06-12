@@ -205,7 +205,7 @@ const RegisterPage: React.FC = () => {
             </div>
             <button
               type="submit"
-              className={`bg-main-color text-white py-2 px-4 rounded-md w-full hover:bg-black mt-6 ${
+              className={`btn btn-ghost bg-main-color text-white py-2 px-4 rounded-md w-full hover:bg-black mt-6 ${
                 isButtonDisabled
                   ? "disabled:bg-gray-300 cursor-not-allowed"
                   : ""
