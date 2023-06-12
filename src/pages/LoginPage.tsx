@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
               <input
                 type="email"
                 id="email"
-                placeholder="Email Kamu..."
+                placeholder="Email"
                 className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
                 value={email}
                 onChange={handleEmailChange}
@@ -55,7 +55,7 @@ const LoginPage: React.FC = () => {
               <input
                 type="password"
                 id="password"
-                placeholder="Password Kamu..."
+                placeholder="Password"
                 className="border border-main-color bg-white text-black px-4 py-2 w-full rounded-md"
                 value={password}
                 onChange={handlePasswordChange}

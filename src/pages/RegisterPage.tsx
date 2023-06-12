@@ -11,6 +11,8 @@ const RegisterPage: React.FC = () => {
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);
@@ -47,7 +49,16 @@ const RegisterPage: React.FC = () => {
   const handleConfirmPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setConfirmPassword(e.target.value);
+    const value = e.target.value;
+    setConfirmPassword(value);
+
+    if (value !== password) {
+      setPasswordError("Password tidak cocok");
+      setIsButtonDisabled(true);
+    } else {
+      setPasswordError("");
+      setIsButtonDisabled(false);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -61,6 +72,13 @@ const RegisterPage: React.FC = () => {
     console.log("Address:", address);
     console.log("Password:", password);
     console.log("Confirm Password:", confirmPassword);
+    if (password === confirmPassword) {
+        console.log("Registrasi berhasil!");
+        // Lakukan tindakan lanjutan setelah registrasi berhasil
+      } else {
+        setPasswordError("Password tidak cocok");
+        setIsButtonDisabled(true);
+      }
   };
 
   return (
@@ -180,11 +198,17 @@ const RegisterPage: React.FC = () => {
                   onChange={handleConfirmPasswordChange}
                   required
                 />
+                {passwordError && (
+                  <p className="text-red-500">{passwordError}</p>
+                )}
               </div>
             </div>
             <button
               type="submit"
-              className="bg-main-color text-white py-2 px-4 rounded-md w-full hover:bg-black mt-6"
+              className={`bg-main-color text-white py-2 px-4 rounded-md w-full hover:bg-black mt-6 ${
+                isButtonDisabled ? "disabled:bg-gray-300 cursor-not-allowed" : ""
+              }`}
+              disabled={isButtonDisabled}
             >
               Daftar
             </button>
