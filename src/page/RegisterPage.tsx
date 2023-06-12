@@ -73,12 +73,12 @@ const RegisterPage: React.FC = () => {
     console.log("Password:", password);
     console.log("Confirm Password:", confirmPassword);
     if (password === confirmPassword) {
-        console.log("Registrasi berhasil!");
-        // Lakukan tindakan lanjutan setelah registrasi berhasil
-      } else {
-        setPasswordError("Password tidak cocok");
-        setIsButtonDisabled(true);
-      }
+      console.log("Registrasi berhasil!");
+      // Lakukan tindakan lanjutan setelah registrasi berhasil
+    } else {
+      setPasswordError("Password tidak cocok");
+      setIsButtonDisabled(true);
+    }
   };
 
   return (
@@ -89,7 +89,7 @@ const RegisterPage: React.FC = () => {
             Daftar Sekarang
           </h2>
           <p className="text-black mb-8 text-center">
-            Sudah memiliki akun? {" "}
+            Sudah memiliki akun?{" "}
             <Link to="/login" className="text-main-color">
               Masuk
             </Link>
@@ -206,7 +206,9 @@ const RegisterPage: React.FC = () => {
             <button
               type="submit"
               className={`bg-main-color text-white py-2 px-4 rounded-md w-full hover:bg-black mt-6 ${
-                isButtonDisabled ? "disabled:bg-gray-300 cursor-not-allowed" : ""
+                isButtonDisabled
+                  ? "disabled:bg-gray-300 cursor-not-allowed"
+                  : ""
               }`}
               disabled={isButtonDisabled}
             >
