@@ -1,10 +1,9 @@
-import React from 'react'
 import Navbar from '../component/Navbar'
 import Card from '../component/Card'
 
 const HomePage = () => {
   return (
-    <div className='w-screen h-screen top-0 overflow-x-hidden'>
+    <div className='w-screen h-screen top-0 overflow-x-hidden z-0'>
         <Navbar/>
         <div className='flex flex-wrap justify-center mt-10 gap-3 mb-10 p-3'>
             <Card 
