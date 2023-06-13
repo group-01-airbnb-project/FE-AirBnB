@@ -6,6 +6,7 @@ import Navbar from "./component/Navbar";
 import LoginPage from "./page/LoginPage";
 import RegisterPage from "./page/RegisterPage";
 import ReservePage from "./page/ReservePage";
+import TripPage from "./page/TripPages";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route path="reserve" element={<ReservePage />} />
+          <Route path="trip" element={<TripPage />} />
         </Routes>
       </BrowserRouter>
     </div>

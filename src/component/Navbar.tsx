@@ -9,7 +9,7 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ children }) => {
   return (
     <>
-      <div className="absolute w-full h-screen top-0 overflow-x-hidden ">
+      <div className="absolute w-full h-screen top-0 overflow-x-hidden">
         <div className="navbar bg-base-100 shadow-xl sticky top-0 z-20">
           <div className="navbar-start">
             <div className="dropdown">
