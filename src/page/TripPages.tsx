@@ -47,14 +47,14 @@ const TripPage = () => {
               selected={DateCheckin}
               onChange={handleDateCheckin}
               dateFormat="dd/MM/yyyy"
-              placeholderText="date Checkin"
+              placeholderText="Tanggal Check-in"
               className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
             />
             <DatePicker
               selected={DateCheckout}
               onChange={handleDateCheckout}
               dateFormat="dd/MM/yyyy"
-              placeholderText="date Checkout"
+              placeholderText="Tanggal Check-out"
               className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
             />
           </div>
