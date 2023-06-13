@@ -38,6 +38,8 @@ const RegisterPage: React.FC = () => {
     setBirthdate(e.target.value);
   };
 
+  console.log(birth_date)
+
   const handleAddressChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setAddress(e.target.value);
   };

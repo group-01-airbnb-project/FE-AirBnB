@@ -1,18 +1,17 @@
 import Navbar from '../component/Navbar'
 import { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
 const DetailPage = () => {
-    const [DateCheckin, setDateCheckin] = useState<Date | null>(null);
-    const [DateCheckout, setDateCheckout] = useState<Date | null>(null);
+    const [DateCheckin, setDateCheckin] = useState("");
+    const [DateCheckout, setDateCheckout] = useState("");
 
-    const handleDateCheckin = (date: Date | null) => {
-        setDateCheckin(date);
+    const handleDateCheckin = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDateCheckin(e.target.value);
     };
-    const handleDateCheckout = (date: Date | null) => {
-        setDateCheckout(date);
+    const handleDateCheckout = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDateCheckout(e.target.value);
     };
     return (
         <div className='w-screen h-screen top-0 overflow-x-hidden z-0'>
@@ -60,26 +59,32 @@ const DetailPage = () => {
                                     <div>
                                         <p className='mt-3'><span className='text-primary font-bold text-3xl'>Rp.199.000</span> / malam</p>
                                         <div className='mt-5'>
-                                            <DatePicker
-                                                selected={DateCheckin}
+                                            <label className="label">
+                                                <span className="label-text">Date Check In</span>
+                                            </label>
+                                            <input
+                                                type="date"
+                                                id="Check - In"
+                                                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
+                                                value={DateCheckin}
                                                 onChange={handleDateCheckin}
-                                                dateFormat="dd/MM/yyyy"
-                                                placeholderText="date Checkin"
-                                                className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+                                                required
                                             />
                                         </div>
-                                        <div className='mt-5 mb-5'>
-                                            <DatePicker
-                                                selected={DateCheckout}
+                                        <div className='mt-2 mb-5'>
+                                            <label className="label">
+                                                <span className="label-text">Date Check Out</span>
+                                            </label>
+                                            <input
+                                                type="date"
+                                                id="Check - out"
+                                                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
+                                                value={DateCheckout}
                                                 onChange={handleDateCheckout}
-                                                dateFormat="dd/MM/yyyy"
-                                                placeholderText="date Checkout"
-                                                className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+                                                required
                                             />
                                         </div>
                                         <button className="btn btn-warning mb-5 w-full">Cek Ketersediaan</button>
-
-
                                     </div>
                                 </div>
 

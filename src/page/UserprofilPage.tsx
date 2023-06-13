@@ -2,16 +2,18 @@ import { useState } from 'react';
 import Navbar from '../component/Navbar'
 import Card from '../component/Card'
 import { BsPlusLg } from "react-icons/bs";
+import TripPage from './TripPages';
+import { Link } from 'react-router-dom';
 
 const UserprofilPage = () => {
-    const [listing, setlisting] = useState<boolean>(false);
+    const [listing, setlisting] = useState<string>("");
     const [showPopup, setShowPopup] = useState(false);
 
     const HandleListing = () => {
-        setlisting(false)
+        setlisting("listing")
     }
     const HandleTrip = () => {
-        setlisting(true)
+        setlisting("trip")
     }
     const HandlePopUp = () => {
         setShowPopup(!showPopup);
@@ -20,97 +22,103 @@ const UserprofilPage = () => {
     return (
         <div className='w-screen h-screen top-0 overflow-x-hidden z-0'>
             <Navbar >
-            <div className='flex justify-center h-fit'>
-                <div className='flex justify-center w-1/4 h-screen shadow-lg p-4 sticky top-5'>
-                    <div>
-                        <div className="avatar">
-                            <div className="w-52 rounded-full flex justify-center ml-3">
-                                <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
+                <div className='flex justify-center h-fit'>
+                    <div className='flex justify-center w-1/4 h-screen shadow-lg p-4 sticky top-5'>
+                        <div>
+                            <div className="avatar">
+                                <div className="w-52 rounded-full flex justify-center ml-3">
+                                    <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
+                                </div>
+                            </div>
+                            <div className="mt-3 mb-3 border-t-4 border-primary"></div>
+                            <div className='flex justify-center text-3xl font-bold hover:cursor-pointer' onClick={() => setlisting("")}>
+                                <p>John Doe</p>
+                            </div>
+                            <div className='mt-5 font-bold'>
+                                <button className="btn btn-warning mb-5 w-full text-white" onClick={HandleListing}>Listing List</button>
+                                <button className="btn btn-warning mb-5 w-full text-white" onClick={HandleTrip}>Trip History</button>
+
                             </div>
                         </div>
-                        <div className="mt-3 mb-3 border-t-4 border-primary"></div>
-                        <div className='flex justify-center text-3xl font-bold'>
-                            <p>John Doe</p>
-                        </div>
-                        <div className='mt-5 font-bold'>
-                            <button className="btn btn-warning mb-5 w-full text-white" onClick={HandleListing}>Listing List</button>
-                            <button className="btn btn-warning mb-5 w-full text-white" onClick={HandleTrip}>Trip History</button>
 
-                        </div>
                     </div>
+                    {listing === "" ?
+                        <div className='w-3/4 h-full'>
+                            <div className='h-screen bg-gray-100 flex justify-center'>
+                                <div className='w-3/4'>
+                                    <div className='mt-5'>
+                                        <label className="label">
+                                            <span className="label-text">Your Name</span>
+                                        </label>
+                                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
+                                    </div>
+                                    <div className='mt-5'>
+                                        <label className="label">
+                                            <span className="label-text">Your Email</span>
+                                        </label>
+                                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
+                                    </div>
+                                    <div className='mt-5'>
+                                        <label className="label">
+                                            <span className="label-text">Your Phone</span>
+                                        </label>
+                                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
+                                    </div>
+                                    <div className='mt-5'>
+                                        <label className="label">
+                                            <span className="label-text">Your Address</span>
+                                        </label>
+                                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
+                                    </div>
+                                    <div className='mt-5 font-bold flex justify-end'>
+
+                                        <button className="btn btn-warning mb-5 text-white">Save</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div> :
+                        listing === "listing" ?
+
+                            <div className='w-3/4 h-full'>
+                                <div className='flex flex-wrap gap-3 mb-10 p-3'>
+                                    <Card
+                                        image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
+                                        name='Filla Puncak Bogor'
+                                        price="Rp.199.000"
+                                        feature='2 kamar tidur + AC + WIFI'
+                                        rating='4,5'
+                                    />
+                                    <Card
+                                        image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
+                                        name='Filla Puncak Bogor'
+                                        price="Rp.199.000"
+                                        feature='2 kamar tidur + AC + WIFI'
+                                        rating='4,5'
+                                    />
+                                    <Card
+                                        image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
+                                        name='Filla Puncak Bogor'
+                                        price="Rp.199.000"
+                                        feature='2 kamar tidur + AC + WIFI'
+                                        rating='4,5'
+                                    />
+
+                                    <div className=' flex justify-center items-center w-80 h-80 mt-10 ml-5 border-dashed border-4 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
+                                        onClick={HandlePopUp}>
+                                        <span className='hover:animate-bounce text-8xl text-primary'><BsPlusLg /></span>
+
+                                    </div>
+                                </div>
+                            </div> :
+                            <TripPage />
+                    }
+
 
                 </div>
-                {listing === false ?
-                    <div className='w-3/4 h-full'>
-                        <div className='h-screen bg-gray-100 flex justify-center'>
-                            <div className='w-3/4'>
-                                <div className='mt-5'>
-                                    <label className="label">
-                                        <span className="label-text">Your Name</span>
-                                    </label>
-                                    <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
-                                </div>
-                                <div className='mt-5'>
-                                    <label className="label">
-                                        <span className="label-text">Your Email</span>
-                                    </label>
-                                    <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
-                                </div>
-                                <div className='mt-5'>
-                                    <label className="label">
-                                        <span className="label-text">Your Phone</span>
-                                    </label>
-                                    <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
-                                </div>
-                                <div className='mt-5'>
-                                    <label className="label">
-                                        <span className="label-text">Your Address</span>
-                                    </label>
-                                    <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
-                                </div>
-                                <div className='mt-5 font-bold flex justify-end'>
-
-                                    <button className="btn btn-warning mb-5 text-white">Save</button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div> :
-                    <div className='w-3/4 h-full'>
-                        <div className='flex flex-wrap gap-3 mb-10 p-3'>
-                            <Card
-                                image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
-                                name='Filla Puncak Bogor'
-                                price="Rp.199.000"
-                                feature='2 kamar tidur + AC + WIFI'
-                                rating='4,5'
-                            />
-                            <Card
-                                image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
-                                name='Filla Puncak Bogor'
-                                price="Rp.199.000"
-                                feature='2 kamar tidur + AC + WIFI'
-                                rating='4,5'
-                            />
-                            <Card
-                                image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
-                                name='Filla Puncak Bogor'
-                                price="Rp.199.000"
-                                feature='2 kamar tidur + AC + WIFI'
-                                rating='4,5'
-                            />
-
-                            <div className=' flex justify-center items-center w-80 h-80 mt-10 ml-5 border-dashed border-4 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
-                                onClick={HandlePopUp}>
-                                <span className='hover:animate-bounce text-8xl text-primary'><BsPlusLg /></span>
-
-                            </div>
-                        </div>
-                    </div>}
-            </div>
             </Navbar>
 
             {showPopup && (
@@ -166,22 +174,22 @@ const UserprofilPage = () => {
                                         </label>
                                         <div className='flex gap-3'>
 
-                                        <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
-                                            onClick={HandlePopUp}>
-                                            <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
-                                        </div>
-                                        <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
-                                            onClick={HandlePopUp}>
-                                            <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
-                                        </div>
-                                        <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
-                                            onClick={HandlePopUp}>
-                                            <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
-                                        </div>
-                                        <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
-                                            onClick={HandlePopUp}>
-                                            <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
-                                        </div>
+                                            <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
+                                                onClick={HandlePopUp}>
+                                                <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
+                                            </div>
+                                            <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
+                                                onClick={HandlePopUp}>
+                                                <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
+                                            </div>
+                                            <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
+                                                onClick={HandlePopUp}>
+                                                <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
+                                            </div>
+                                            <div className=' flex justify-center items-center w-20 h-20 border-dashed border-2 rounded-xl border-primary bg-gray hover:cursor-pointer hover:animate-pulse '
+                                                onClick={HandlePopUp}>
+                                                <span className='hover:animate-bounce text-2xl text-primary'><BsPlusLg /></span>
+                                            </div>
                                         </div>
                                     </div>
 
