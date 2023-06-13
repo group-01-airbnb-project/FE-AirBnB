@@ -1,87 +1,73 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import api from '../axios/RestApi';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Swal from "sweetalert2";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
+
+const schema = Yup.object({
+  first_name: Yup.string().required("required"),
+  last_name: Yup.string().required("required"),
+  email: Yup.string().required("required"),
+  password: Yup.string().required("required"),
+  phone: Yup.string().required("required"),
+  birth_date: Yup.string().required("required"),
+  address: Yup.string().required("required"),
+  gender: Yup.string().required("required"),
+  confirm_password: Yup.string().required("required"),
+});
 
 const RegisterPage: React.FC = () => {
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("");
-  const [birth_date, setBirthdate] = useState("");
-  const [address, setAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value);
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value);
-  };
-
-  const handleGenderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setGender(e.target.value);
-  };
-
-  const handleBirthdateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBirthdate(e.target.value);
-  };
-
-  console.log(birth_date)
-
-  const handleAddressChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setAddress(e.target.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = e.target.value;
-    setConfirmPassword(value);
-
-    if (value !== password) {
-      setPasswordError("Password tidak cocok");
-      setIsButtonDisabled(true);
-    } else {
-      setPasswordError("");
-      setIsButtonDisabled(false);
+  const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: {
+      first_name: "",
+      last_name:"",
+      email: "",
+      password: "",
+      phone: "",
+      birth_date: "",
+      address: "",
+      gender: "",
+      confirm_password: "",
+    },
+    validationSchema: schema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+  
+  const RegisterHandle = async () => {
+    const {first_name, last_name, email, password, phone, birth_date, address, gender} = formik.values;
+    
+    try{
+      const response = await api.Register(first_name, last_name, email, password, phone, birth_date, address, gender);
+      console.log(response.data)
+      Swal.fire({
+        title: 'Register Berhasil',
+        text: 'Silakan Login untuk memulai',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = '/'; 
+        }
+      })
+      
+      
+    } catch(error){
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: "Please make sure your username and password are correct!",
+      });
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("First Name:", first_name);
-    console.log("Last Name:", last_name);
-    console.log("Email:", email);
-    console.log("Phone Number:", phone);
-    console.log("Gender:", gender);
-    console.log("Birthdate:", birth_date);
-    console.log("Address:", address);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
-    if (password === confirmPassword) {
-      console.log("Registrasi berhasil!");
-      // Lakukan tindakan lanjutan setelah registrasi berhasil
-    } else {
-      setPasswordError("Password tidak cocok");
-      setIsButtonDisabled(true);
-    }
-  };
+  }
 
   return (
     <div className="flex justify-center items-center bg-gray-100 h-screen w-screen">
@@ -96,27 +82,29 @@ const RegisterPage: React.FC = () => {
               Masuk
             </Link>
           </p>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
                 <input
                   type="text"
+                  name="first_name"
                   id="firstName"
                   placeholder="Nama Depan"
                   className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                  value={first_name}
-                  onChange={handleFirstNameChange}
+                  value={formik.values.first_name}
+                  onChange={formik.handleChange}
                   required
                 />
               </div>
               <div>
                 <input
                   type="text"
+                  name="last_name"
                   id="lastName"
                   placeholder="Nama Belakang"
                   className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                  value={last_name}
-                  onChange={handleLastNameChange}
+                  value={formik.values.last_name}
+                  onChange={formik.handleChange}
                   required
                 />
               </div>
@@ -125,21 +113,23 @@ const RegisterPage: React.FC = () => {
               <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="Email"
                 className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                value={email}
-                onChange={handleEmailChange}
+                value={formik.values.email}
+                onChange={formik.handleChange}
                 required
               />
             </div>
             <div className="mb-4">
               <input
                 type="tel"
+                name="phone"
                 id="phone"
                 placeholder="Nomor Handphone"
                 className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                value={phone}
-                onChange={handlePhoneChange}
+                value={formik.values.phone}
+                onChange={formik.handleChange}
                 required
               />
             </div>
@@ -147,12 +137,13 @@ const RegisterPage: React.FC = () => {
               <div>
                 <select
                   id="gender"
+                  name="gender"
                   className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                  value={gender}
-                  onChange={handleGenderChange}
+                  value={formik.values.gender}
+                  onChange={formik.handleChange}
                   required
                 >
-                  <option value="">Jenis Kelamin</option>
+                  <option >Jenis Kelamin</option>
                   <option value="male">Laki-Laki</option>
                   <option value="female">Perempuan</option>
                 </select>
@@ -161,9 +152,10 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="date"
                   id="birthdate"
+                  name="birth_date"
                   className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                  value={birth_date}
-                  onChange={handleBirthdateChange}
+                  value={formik.values.birth_date}
+                  onChange={formik.handleChange}
                   required
                 />
               </div>
@@ -173,8 +165,8 @@ const RegisterPage: React.FC = () => {
                 id="address"
                 placeholder="Alamat"
                 className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md resize-none"
-                value={address}
-                onChange={handleAddressChange}
+                value={formik.values.address}
+                onChange={formik.handleChange}
                 required
               ></textarea>
             </div>
@@ -183,36 +175,35 @@ const RegisterPage: React.FC = () => {
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   placeholder="Password"
                   className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                  value={password}
-                  onChange={handlePasswordChange}
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
                   required
                 />
               </div>
               <div>
                 <input
                   type="password"
+                  name="confirm_password"
                   id="confirmPassword"
                   placeholder="Konfirmasi Password"
                   className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                  value={confirmPassword}
-                  onChange={handleConfirmPasswordChange}
+                  value={formik.values.confirm_password}
+                  onChange={formik.handleChange}
                   required
                 />
-                {passwordError && (
-                  <p className="text-red-500">{passwordError}</p>
-                )}
+                
               </div>
             </div>
+            
+            <p className={`${formik.values.password === formik.values.confirm_password ? "hidden" : ""} text-red-600`}>password tidak sama!</p> 
+            
             <button
-              type="submit"
-              className={`btn btn-ghost bg-primary text-white py-2 px-4 rounded-md w-full drop-shadow-xl hover:bg-black mt-6 ${
-                isButtonDisabled
-                  ? "disabled:bg-gray-300 cursor-not-allowed"
-                  : ""
-              }`}
-              disabled={isButtonDisabled}
+              className="btn btn-ghost bg-primary text-white py-2 px-4 rounded-md w-full drop-shadow-xl hover:bg-black mt-6"
+              type="button"
+              onClick={RegisterHandle}
             >
               Daftar
             </button>

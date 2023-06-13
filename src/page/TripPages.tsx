@@ -1,7 +1,6 @@
 import Navbar from "../component/Navbar";
 import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 
 const TripPage = () => {
   const [DateCheckin, setDateCheckin] = useState<Date | null>(null);
@@ -23,7 +22,7 @@ const TripPage = () => {
           <hr className="border border-primary my-8" />
           <p className="mb-3">Villa Master Lorem</p>
           <div className="flex flex-row w-fit gap-5 mb-3">
-            <DatePicker
+            {/* <DatePicker
               selected={DateCheckin}
               onChange={handleDateCheckin}
               dateFormat="dd/MM/yyyy"
@@ -36,14 +35,14 @@ const TripPage = () => {
               dateFormat="dd/MM/yyyy"
               placeholderText="Tanggal Check-out"
               className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
-            />
+            /> */}
           </div>
           <p className="mb-3">Rp199.000 x 2 malam</p>
           <p className="mb-3 font-bold">Total Rp398.000</p>
           <hr className="border border-primary my-8" />
           <p className="mb-3">Villa Master Lorem</p>
           <div className="flex flex-row w-fit gap-5 mb-3">
-            <DatePicker
+            {/* <DatePicker
               selected={DateCheckin}
               onChange={handleDateCheckin}
               dateFormat="dd/MM/yyyy"
@@ -56,7 +55,7 @@ const TripPage = () => {
               dateFormat="dd/MM/yyyy"
               placeholderText="Tanggal Check-out"
               className="border border-primary rounded px-4 py-2 focus:outline-none focus:border-blue-500"
-            />
+            /> */}
           </div>
           <p className="mb-3">Rp199.000 x 2 malam</p>
           <p className="mb-3 font-bold">Total Rp398.000</p>

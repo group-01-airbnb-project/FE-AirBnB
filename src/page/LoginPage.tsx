@@ -1,23 +1,63 @@
-import React from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from '../axios/RestApi';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Swal from "sweetalert2";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
+
+const schema = Yup.object({
+  email: Yup.string().required("email required"),
+  password: Yup.string().required("Password required"),
+});
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const formik = useFormik({
+    initialValues: {
+      password: "",
+      email: ""
+    },
+    validationSchema: schema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  
+  const LoginHandle = async () => {
+    const { email, password } = formik.values;
+    if (!email || !password) {
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: "Please check your username or password again!",
+      });
+      return;
+    }
+    try {
+      const response = await api.Login(email, password);
+      setCookie('token', response?.data?.data?.accessToken);
+      setCookie('role', response?.data?.data?.user?.role);
+      
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Login Success',
+        showConfirmButton: false,
+        timer: 1500
+      })
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+      navigate("/home")
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: "Please make sure your username and password are correct!",
+      });
+    }
   };
 
   return (
@@ -34,37 +74,40 @@ const LoginPage: React.FC = () => {
               </Link>
             </div>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="mb-6">
-              <label htmlFor="email" className="block font-medium mb-2"></label>
+              <label htmlFor="user" className="block text-black text-sm font-bold mb-2">
+                Username
+              </label>
               <input
-                type="email"
-                id="email"
-                placeholder="Email"
+                type="text"
+                id="user"
+                name="email"
+                placeholder="Username"
                 className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                value={email}
-                onChange={handleEmailChange}
+                onChange={formik.handleChange}
+                value={formik.values.email}
                 required
               />
             </div>
             <div className="mb-6">
-              <label
-                htmlFor="password"
-                className="block font-medium mb-2"
-              ></label>
+              <label htmlFor="password" className="block text-black text-sm font-bold mb-2">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
                 placeholder="Password"
                 className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
-                value={password}
-                onChange={handlePasswordChange}
+                value={formik.values.password}
+                onChange={formik.handleChange}
                 required
               />
             </div>
             <button
-              type="submit"
               className="btn btn-ghost bg-primary text-white py-2 px-4 rounded-md w-full drop-shadow-xl hover:bg-black mt-6"
+              type="button"
+              onClick={LoginHandle}
             >
               Masuk
             </button>
