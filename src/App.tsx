@@ -7,24 +7,26 @@ import LoginPage from "./page/LoginPage";
 import RegisterPage from "./page/RegisterPage";
 import ReservePage from "./page/ReservePage";
 import TripPage from "./page/TripPages";
+import { CookiesProvider } from 'react-cookie';
 
 function App() {
   return (
     <>
     <div data-theme="light">
-
+    <CookiesProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/profil" element={<UserprofilPage />} />
           <Route path="/nav" element={<Navbar />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="reserve" element={<ReservePage />} />
-          <Route path="trip" element={<TripPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/reserve" element={<ReservePage />} />
+          <Route path="/trip" element={<TripPage />} />
         </Routes>
       </BrowserRouter>
+      </CookiesProvider>
     </div>
     </>
   );

@@ -1,6 +1,5 @@
 import Navbar from "../component/Navbar";
 import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 
 const ReservePage = () => {
   const [DateCheckin, setDateCheckin] = useState("");
