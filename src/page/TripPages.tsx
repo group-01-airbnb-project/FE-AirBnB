@@ -15,9 +15,10 @@ const TripPage = () => {
   };
 
   return (
-    <div className="w-3/4 h-screen top-0 overflow-x-hidden z-0">
-      <div className="flex w-full justify-center">
-        <div className="w-3/4 h-fit bg-white drop-shadow-lg rounded-lg my-10 px-16 py-5 border-2 border-primary">
+    <div className="w-screen h-screen top-0 overflow-x-hidden z-0">
+      <Navbar />
+      <div className="flex justify-center w-screen mt-16">
+        <div className="w-4/5 h-fit bg-white drop-shadow-lg rounded-lg my-10 px-16 py-5 border-2 border-primary">
           <p className="mt-3 font-bold text-3xl">Trip</p>
           <hr className="border border-primary my-8" />
           <p className="mb-3">Villa Master Lorem</p>
