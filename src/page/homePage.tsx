@@ -45,7 +45,7 @@ const HomePage = () => {
                 price={`Rp.${item.price}`}
                 feature={item.facilities}
                 rating={item.rating}
-                Host_id={item.host_id}
+                Host_id={item.homestay_id}
               />))}
 
           </div>}

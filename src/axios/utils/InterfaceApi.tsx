@@ -38,7 +38,7 @@ export interface LoginResponse {
   }
 
   export interface GetHomeStay{
-    host_id: string;
+    homstay_id: string;
     title: string;
     description: string;
     location: string;

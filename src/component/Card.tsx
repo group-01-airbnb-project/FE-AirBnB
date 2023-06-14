@@ -17,7 +17,7 @@ const Card: FC<cardProps> = ({ image, name, price, feature, rating, Host_id }) =
     const [cookies, setCookie] = useCookies();
 
     const HandleDetail = (id: any) => {
-        setCookie('host_id', id);
+        setCookie('homestay_id', id);
         navigate("/detail")
     }
 
