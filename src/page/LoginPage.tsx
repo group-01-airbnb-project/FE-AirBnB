@@ -1,3 +1,4 @@
+import {useState} from "react";
 import { Link } from "react-router-dom";
 import api from '../axios/RestApi';
 import { useFormik } from "formik";
@@ -5,6 +6,7 @@ import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import Spin from '../assets/Infinity-1s-200px.svg'
 
 const schema = Yup.object({
   email: Yup.string().required("email required"),
@@ -12,9 +14,10 @@ const schema = Yup.object({
 });
 
 const LoginPage: React.FC = () => {
+  const [loading, setLoading] =  useState<boolean>(false)
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies();
-  console.log(cookies?.token)
+  
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -38,10 +41,13 @@ const LoginPage: React.FC = () => {
       return;
     }
     try {
+
+      setLoading(true)
       const response = await api.Login(email, password);
+      console.log(response.data.data)
       setCookie('token', response?.data?.data?.accessToken);
-      setCookie('role', response?.data?.data?.user?.Role);
-      console.log('role', response?.data?.data?.user);
+      setCookie('role', response?.data?.data?.user?.role);
+      
       
       Swal.fire({
         position: 'center',
@@ -59,6 +65,8 @@ const LoginPage: React.FC = () => {
         title: "Failed",
         text: "Please make sure your username and password are correct!",
       });
+    }finally {
+      setLoading(false) 
     }
   };
 
@@ -110,8 +118,8 @@ const LoginPage: React.FC = () => {
               className="btn btn-ghost bg-primary text-white py-2 px-4 rounded-md w-full drop-shadow-xl hover:bg-black mt-6"
               type="button"
               onClick={LoginHandle}
-            >
-              Masuk
+            >{loading ? 
+              <img src={Spin} className="h-8 w-8" alt="Loading" />  : "Masuk"}
             </button>
           </form>
         </div>
