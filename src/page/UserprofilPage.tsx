@@ -4,8 +4,10 @@ import TripPage from './TripPages';
 import PopupUpgrade from '../component/PopupUpgrade';
 import Profil from '../component/Profil';
 import ListingList from '../component/ListingList';
+import { useCookies } from 'react-cookie';
 
 const UserprofilPage = () => {
+    const [cookies] = useCookies();
     const [listing, setlisting] = useState<string>("");
     const [popUPUpgrade, setPopUpUpgrade] = useState(false);
 
@@ -36,18 +38,19 @@ const UserprofilPage = () => {
                                 <p>John Doe</p>
                             </div>
                             <div className='mt-5 font-bold'>
-                                <div className="tooltip w-full" data-tip="Upgrade Acount To Listing your Homestay">
-
-                                    <button className="btn btn-warning mb-5 w-full text-white" onClick={HandlePopUpUpgrade}>Upgrade Acount</button>
-                                </div>
-                                <button className="btn btn-warning mb-5 w-full text-white" onClick={HandleListing}>Listing List</button>
+                                {cookies.role === "user" ?
+                                    <div className="tooltip w-full" data-tip="Upgrade Acount To Listing your Homestay">
+                                        <button className="btn btn-warning mb-5 w-full text-white" onClick={HandlePopUpUpgrade}>Upgrade Acount</button>
+                                    </div>
+                                    :
+                                    <button className="btn btn-warning mb-5 w-full text-white" onClick={HandleListing}>Listing List</button>}
                                 <button className="btn btn-warning mb-5 w-full text-white" onClick={HandleTrip}>Trip History</button>
 
                             </div>
                         </div>
 
                     </div>
-                    {listing === "" ? <Profil/> : listing === "listing" ? <ListingList/>:<TripPage />}
+                    {listing === "" ? <Profil /> : listing === "listing" ? <ListingList /> : <TripPage />}
                 </div>
             </Navbar>
 
