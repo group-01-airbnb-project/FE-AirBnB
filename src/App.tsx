@@ -7,13 +7,14 @@ import LoginPage from "./page/LoginPage";
 import RegisterPage from "./page/RegisterPage";
 import ReservePage from "./page/ReservePage";
 import TripPage from "./page/TripPages";
-import { CookiesProvider } from 'react-cookie';
+import {useCookies } from 'react-cookie';
 
 function App() {
+  const [cookies] = useCookies();
     return (
     <>
-    <div data-theme="light">
-    <CookiesProvider>
+    <div data-theme={cookies.toggle === "true"? "dark" : "light"}>
+    
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -26,7 +27,7 @@ function App() {
           <Route path="/trip" element={<TripPage />} />
         </Routes>
       </BrowserRouter>
-      </CookiesProvider>
+     
     </div>
     </>
   );

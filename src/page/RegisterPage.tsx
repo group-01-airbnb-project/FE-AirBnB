@@ -64,7 +64,7 @@ const RegisterPage: React.FC = () => {
       Swal.fire({
         icon: "error",
         title: "Failed",
-        text: "Please make sure your username and password are correct!",
+        text: "Kesalahan Server gagal Register !",
       });
     }finally {
       setLoading(false) 
@@ -72,7 +72,7 @@ const RegisterPage: React.FC = () => {
   }
 
   return (
-    <div className="flex justify-center items-center bg-gray-100 h-screen w-screen">
+    <div className="flex justify-center items-center h-screen w-screen">
       <div className="max-w-lg w-full mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-12 py-6">
           <h2 className="text-2xl font-bold text-black text-center">

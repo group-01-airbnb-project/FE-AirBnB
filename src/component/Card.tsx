@@ -1,16 +1,26 @@
 import { FC } from "react";
 import { BsGeoAltFill } from "react-icons/bs";
-
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 interface cardProps {
-    id: number,
+    key?: number,
     image: string;
     name: string;
     price?: string | number;
     feature?: string;
     rating?: string | number;
     place?: string;
+    Host_id?: number;
 }
-const Card: FC<cardProps> = ({ image, name, price, feature, rating }) => {
+const Card: FC<cardProps> = ({ image, name, price, feature, rating, Host_id }) => {
+    const navigate = useNavigate();
+    const [cookies, setCookie] = useCookies();
+
+    const HandleDetail = (id: any) => {
+        setCookie('host_id', id);
+        navigate("/detail")
+    }
+
     return (
         <div >
             <div className="card w-80 bg-base-100 shadow-xl">
@@ -30,7 +40,7 @@ const Card: FC<cardProps> = ({ image, name, price, feature, rating }) => {
                     <p className="font-medium"><span className="text-2xl text-primary">{price}</span> / malam</p>
                     <p>{feature}</p>
                     <div className="card-actions justify-end">
-                    <button className="btn btn-outline btn-warning">Detail</button>
+                    <button className="btn btn-outline btn-warning" onClick={() => HandleDetail(Host_id)}>Detail</button>
                     </div>
 
                 </div>

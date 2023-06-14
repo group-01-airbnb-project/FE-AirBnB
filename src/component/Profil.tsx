@@ -50,7 +50,7 @@ const Profil = () => {
 
     return (
         <div className='w-3/4 h-full'>
-            <div className='h-screen bg-gray-100 flex justify-center'>
+            <div className='h-screen flex justify-center'>
                 <div className='w-3/4'>
                     <div className="mt-5">
                         <label htmlFor="user" className="label">
@@ -64,7 +64,7 @@ const Profil = () => {
                             value={formik.values.name}
                             onChange={formik.handleChange}
                             required
-                            className="input input-bordered input-warning w-full bg-gray-100"
+                            className="input input-bordered input-warning w-full"
                         />
                     </div>
 
@@ -72,19 +72,19 @@ const Profil = () => {
                         <label className="label">
                             <span className="label-text">Your Email</span>
                         </label>
-                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
+                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full" />
                     </div>
                     <div className='mt-5'>
                         <label className="label">
                             <span className="label-text">Your Phone</span>
                         </label>
-                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
+                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full" />
                     </div>
                     <div className='mt-5'>
                         <label className="label">
                             <span className="label-text">Your Address</span>
                         </label>
-                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full bg-gray-100" />
+                        <input type="text" placeholder="Type here" className=" input input-bordered input-warning w-full" />
                     </div>
                     <div className='mt-5 font-bold flex justify-end'>
 

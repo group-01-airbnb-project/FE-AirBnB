@@ -1,5 +1,5 @@
-import { BsFillBellFill } from "react-icons/bs";
-import React, { FC } from "react";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import React, { FC , useState} from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import Swal from "sweetalert2";
@@ -10,7 +10,13 @@ interface NavbarProps {
 
 const Navbar: FC<NavbarProps> = ({ children }) => {
   const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies();
+  const [cookies,setCookie, removeCookie] = useCookies();
+  const [toggle, setToggle] = useState<boolean>(false);
+
+  const SetToggle = () =>{
+    setCookie('toggle' , !toggle)
+    setToggle(!toggle)
+  }
 
   const Logout = () => {
     Swal.fire({
@@ -33,7 +39,7 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
         navigate("/")
       }
     })
-   
+
   }
   return (
     <>
@@ -82,18 +88,16 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
             </ul>
           </div>
           <div className="navbar-end">
-            <div className="mr-3">
+            <div className="mr-3" onClick={SetToggle}>
               <label
                 tabIndex={0}
                 className="btn btn-ghost btn-circle text-2xl "
               >
                 <div className="indicator">
                   <span>
-                    <BsFillBellFill />
+                    {cookies.toggle === "true"? <BsFillSunFill/> : <BsFillMoonFill />}
                   </span>
-                  <span className="badge badge-secondary badge-sm indicator-item">
-                    8
-                  </span>
+
                 </div>
               </label>
             </div>

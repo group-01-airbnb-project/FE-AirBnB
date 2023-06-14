@@ -1,5 +1,6 @@
 import Navbar from '../component/Navbar'
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 const DetailPage = () => {
     const [DateCheckin, setDateCheckin] = useState("");
@@ -15,7 +16,7 @@ const DetailPage = () => {
         <div className='w-screen h-screen top-0 overflow-x-hidden z-0'>
             <Navbar >
                 <div className='flex justify-center w-screen mt-3'>
-                    <div className='w-4/5 h-fit bg-white drop-shadow-lg rounded-lg mb-10'>
+                    <div className='w-4/5 h-fit shadow-lg rounded-lg mb-10'>
 
                         <div className='w-full'>
                             <img src="https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675" alt="image detail"
@@ -63,7 +64,7 @@ const DetailPage = () => {
                                             <input
                                                 type="date"
                                                 id="Check - In"
-                                                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
+                                                className="border border-primary text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                                                 value={DateCheckin}
                                                 onChange={handleDateCheckin}
                                                 required
@@ -76,7 +77,7 @@ const DetailPage = () => {
                                             <input
                                                 type="date"
                                                 id="Check - out"
-                                                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
+                                                className="border border-primary text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                                                 value={DateCheckout}
                                                 onChange={handleDateCheckout}
                                                 required

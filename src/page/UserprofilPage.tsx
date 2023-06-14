@@ -26,7 +26,7 @@ const UserprofilPage = () => {
         <div className='w-screen h-screen top-0 overflow-x-hidden z-0'>
             <Navbar >
                 <div className='flex justify-center h-fit'>
-                    <div className='flex justify-center w-1/4 h-screen shadow-lg p-4 sticky top-5'>
+                    <div className='flex justify-center w-1/4 h-screen shadow-2xl p-4 sticky top-5'>
                         <div className='p-10'>
                             <div className="avatar">
                                 <div className="w-52 rounded-full flex justify-center ml-3">
