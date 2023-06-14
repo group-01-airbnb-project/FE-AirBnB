@@ -6,7 +6,7 @@ export interface LoginResponse {
         Email: string;
         Phone: string;
         Address: string;
-        Role: string;
+        role: string;
         ProfilePicture: string;
       };
       message: string;
@@ -35,4 +35,14 @@ export interface LoginResponse {
     ProfilePicture: string;
     Role: string;
    
+  }
+
+  export interface GetHomeStay{
+    host_id: string;
+    title: string;
+    description: string;
+    location: string;
+    price: number;
+    facilities: string;
+    rating: number;
   }

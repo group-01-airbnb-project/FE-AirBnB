@@ -2,13 +2,39 @@ import { BsFillBellFill } from "react-icons/bs";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
-
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 interface NavbarProps {
   children?: React.ReactNode;
 }
 
 const Navbar: FC<NavbarProps> = ({ children }) => {
-  const [cookies] = useCookies();
+  const navigate = useNavigate();
+  const [cookies, removeCookie] = useCookies();
+
+  const Logout = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Logout '
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeCookie('token', {})
+        removeCookie('role', {})
+        Swal.fire(
+          'Logout!',
+          'Anda Telah Logout',
+          'success'
+        )
+        navigate("/")
+      }
+    })
+   
+  }
   return (
     <>
       <div className="absolute w-full h-screen top-0 overflow-x-hidden">
@@ -71,31 +97,35 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
                 </div>
               </label>
             </div>
-            {cookies?.token == undefined || "" ? 
-            <Link to="/login">
-              <button className="btn btn-warning ml-5 mr-5 rounded-xl">Login</button>
-            </Link>:
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
-                </div>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link to="/profil" className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </Link>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>}
+            {cookies?.role == "user" && "hoosting" ?
+
+
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link to="/profil" className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <a onClick={Logout}>Logout</a>
+                  </li>
+                </ul>
+              </div>
+              :
+              <Link to="/login">
+                <button className="btn btn-warning ml-5 mr-5 rounded-xl">Login</button>
+              </Link>
+            }
           </div>
         </div>
         <div>{children}</div>

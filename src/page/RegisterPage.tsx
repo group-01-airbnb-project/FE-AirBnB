@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import api from '../axios/RestApi';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
+import Spin from '../assets/Infinity-1s-200px.svg'
 
 const schema = Yup.object({
   first_name: Yup.string().required("required"),
@@ -18,6 +19,7 @@ const schema = Yup.object({
 });
 
 const RegisterPage: React.FC = () => {
+  const [loading, setLoading] =  useState<boolean>(false)
   const formik = useFormik({
     initialValues: {
       first_name: "",
@@ -40,6 +42,7 @@ const RegisterPage: React.FC = () => {
     const {first_name, last_name, email, password, phone, birth_date, address, gender} = formik.values;
     
     try{
+      setLoading(true)
       const response = await api.Register(first_name, last_name, email, password, phone, birth_date, address, gender);
       console.log(response.data)
       Swal.fire({
@@ -51,7 +54,7 @@ const RegisterPage: React.FC = () => {
         confirmButtonText: 'OK'
       }).then((result) => {
         if (result.value) {
-          window.location.href = '/'; 
+          window.location.href = '/login'; 
         }
       })
       
@@ -63,6 +66,8 @@ const RegisterPage: React.FC = () => {
         title: "Failed",
         text: "Please make sure your username and password are correct!",
       });
+    }finally {
+      setLoading(false) 
     }
   }
 
@@ -202,7 +207,8 @@ const RegisterPage: React.FC = () => {
               type="button"
               onClick={RegisterHandle}
             >
-              Daftar
+              {loading ? 
+              <img src={Spin} className="h-8 w-8" alt="Loading" />  : "Daftar"}
             </button>
           </form>
         </div>

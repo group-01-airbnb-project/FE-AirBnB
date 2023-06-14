@@ -2,6 +2,7 @@ import { FC } from "react";
 import { BsGeoAltFill } from "react-icons/bs";
 
 interface cardProps {
+    id: number,
     image: string;
     name: string;
     price?: string | number;
