@@ -4,8 +4,6 @@ import api from '../axios/RestApi';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 
 const schema = Yup.object({
   first_name: Yup.string().required("required"),
@@ -20,7 +18,6 @@ const schema = Yup.object({
 });
 
 const RegisterPage: React.FC = () => {
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       first_name: "",

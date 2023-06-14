@@ -6,7 +6,7 @@ export interface LoginResponse {
         Email: string;
         Phone: string;
         Address: string;
-        role: string;
+        Role: string;
         ProfilePicture: string;
       };
       message: string;
@@ -24,4 +24,15 @@ export interface LoginResponse {
       address: string;
       gender: string;
     
+  }
+
+  export interface GetUser{
+    Id: number;
+    UserName: string;
+    Email: string;
+    Phone: string;
+    Address: string;
+    ProfilePicture: string;
+    Role: string;
+   
   }

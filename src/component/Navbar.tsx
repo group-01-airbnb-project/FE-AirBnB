@@ -1,12 +1,14 @@
 import { BsFillBellFill } from "react-icons/bs";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 interface NavbarProps {
   children?: React.ReactNode;
 }
 
 const Navbar: FC<NavbarProps> = ({ children }) => {
+  const [cookies] = useCookies();
   return (
     <>
       <div className="absolute w-full h-screen top-0 overflow-x-hidden">
@@ -69,6 +71,10 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
                 </div>
               </label>
             </div>
+            {cookies?.token == undefined || "" ? 
+            <Link to="/login">
+              <button className="btn btn-warning ml-5 mr-5 rounded-xl">Login</button>
+            </Link>:
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
@@ -89,7 +95,7 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
                   <a>Logout</a>
                 </li>
               </ul>
-            </div>
+            </div>}
           </div>
         </div>
         <div>{children}</div>

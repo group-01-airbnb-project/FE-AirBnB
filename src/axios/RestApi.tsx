@@ -1,5 +1,5 @@
 import axios, { AxiosPromise } from 'axios';
-import { LoginResponse, RegisterResponse } from './utils/InterfaceApi';
+import { GetUser, LoginResponse, RegisterResponse } from './utils/InterfaceApi';
 
 const instance = axios.create({
   baseURL: 'https://group1.altapro.online/',
@@ -38,6 +38,17 @@ const api = {
         birth_date,
         address,
         gender,
+      },
+    }),
+
+  GetUser: (
+    token: string
+  ): AxiosPromise<GetUser[]> =>
+    instance({
+      method: 'GET',
+      url: '/users',
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     }),
 };

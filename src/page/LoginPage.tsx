@@ -13,7 +13,8 @@ const schema = Yup.object({
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie] = useCookies();
+  console.log(cookies?.token)
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -39,7 +40,8 @@ const LoginPage: React.FC = () => {
     try {
       const response = await api.Login(email, password);
       setCookie('token', response?.data?.data?.accessToken);
-      setCookie('role', response?.data?.data?.user?.role);
+      setCookie('role', response?.data?.data?.user?.Role);
+      console.log('role', response?.data?.data?.user);
       
       Swal.fire({
         position: 'center',
@@ -49,7 +51,7 @@ const LoginPage: React.FC = () => {
         timer: 1500
       })
 
-      navigate("/home")
+      navigate("/")
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -84,10 +86,10 @@ const LoginPage: React.FC = () => {
                 id="user"
                 name="email"
                 placeholder="Username"
-                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
                 onChange={formik.handleChange}
                 value={formik.values.email}
                 required
+                className="border border-primary bg-white text-black px-4 py-2 w-full drop-shadow-lg rounded-md"
               />
             </div>
             <div className="mb-6">
