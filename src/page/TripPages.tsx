@@ -21,7 +21,7 @@ const TripPage = () => {
         <div className="w-4/5 h-fit bg-white drop-shadow-lg rounded-lg my-10 px-16 py-5 border-2 border-primary">
           <p className="mt-3 font-bold text-3xl">Trip</p>
           <hr className="border border-primary my-8" />
-          
+
           <div className="flex flex-row mb-5">
             <div className="basis-1/2 pr-8">
               <p className="mb-3">Villa Master Lorem</p>
@@ -50,13 +50,13 @@ const TripPage = () => {
               </button>
             </div>
           </div>
-          
+
           <div className="flex flex-row">
             <div className="basis-1/2 pr-8">
-            <hr className="border border-primary my-8" />
+              <hr className="border border-primary my-8" />
             </div>
             <div className="basis-1/2 pl-8">
-            <hr className="border border-primary my-8" />
+              <hr className="border border-primary my-8" />
             </div>
           </div>
 
@@ -88,7 +88,7 @@ const TripPage = () => {
               </button>
             </div>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );
