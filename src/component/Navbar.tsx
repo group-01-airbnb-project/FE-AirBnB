@@ -120,7 +120,7 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
               </div>
             ) : (
               <Link to="/login">
-                <button className="btn btn-ghost bg-white text-primary hover:bg-black ml-5 mr-5 rounded-xl">
+                <button className="btn btn-ghost bg-white text-primary hover:bg-opacity-10 hover:text-black ml-5 mr-5 rounded-xl">
                   Login
                 </button>
               </Link>
