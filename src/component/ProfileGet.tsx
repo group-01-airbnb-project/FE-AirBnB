@@ -8,7 +8,7 @@ interface PopUpProps {
 const ProfilGet: React.FC<PopUpProps> = ({ setShow }) =>{
     const [Data, setData] = useState<any>([]);
     
-    const [cookies] = useCookies();
+    const [cookies, setCookie] = useCookies();
     const closePopUp = () => {
         setShow(true);
     };
@@ -20,6 +20,8 @@ const ProfilGet: React.FC<PopUpProps> = ({ setShow }) =>{
             try {
                 const response = await api.GetUser(cookies.token);
                 setData(response.data)
+                
+                setCookie('name', Data?.data?.fullname)
 
 
             } catch (error) {
@@ -27,9 +29,11 @@ const ProfilGet: React.FC<PopUpProps> = ({ setShow }) =>{
 
             }
         };
-
+        // 
         fetchUsers();
+
     }, [cookies]);
+
    
     return (
         <div>

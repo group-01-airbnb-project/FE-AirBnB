@@ -1,9 +1,9 @@
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import React, { FC, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
-import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-
+import { useNavigate } from "react-router-dom";
 interface NavbarProps {
   children?: React.ReactNode;
 }
@@ -11,13 +11,12 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ children }) => {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies();
-  const [toggle, setToggle] = useState<boolean>(cookies.toggle === "true");
+  const [toggle, setToggle] = useState<boolean>(false);
 
   const SetToggle = () => {
-    const newToggle = !toggle;
-    setCookie("toggle", newToggle.toString());
-    setToggle(newToggle);
-  };
+    setCookie('toggle', !toggle)
+    setToggle(!toggle)
+  }
 
   const Logout = () => {
     Swal.fire({
@@ -27,21 +26,23 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Logout",
-    }).then((result) => {
+      confirmButtonText: "Logout ",
+    })
+    .then((result) => {
       if (result.isConfirmed) {
         removeCookie("token", {});
         removeCookie("role", {});
-        Swal.fire("Logout!", "Anda Telah Logout", "success").then(() => {
-          navigate("/");
-        });
+        Swal.fire("Logout!", "Anda Telah Logout", "success");
+        navigate("/");
       }
-    });
-  };
+    })
 
-  return (
-    <div className="absolute w-full h-screen top-0 overflow-x-hidden">
-      <div className="navbar bg-primary text-white shadow-xl sticky top-0 z-20">
+}
+
+return (
+  <>
+    <div className="absolute w-full h-screen top-0 overflow-x-hidden z-20">
+      <div className={`navbar shadow-xl sticky top-0 ${cookies.toggle === "true" ? "bg-gray-800" : "bg-white"} z-20`}>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -55,7 +56,7 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
                 />
               </svg>
@@ -64,11 +65,9 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link to="/">
-                  <a>Home</a>
-                </Link>
-              </li>
+              <Link to="/">
+                <a>Home</a>
+              </Link>
               <li>
                 <a>Saved</a>
               </li>
@@ -81,31 +80,34 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/" className="text-white">
+              <Link to="/">
                 Home
               </Link>
             </li>
             <li>
-              <a className="text-white">Saved</a>
+              <a >Saved</a>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           <div className="mr-3" onClick={SetToggle}>
-            <label tabIndex={0} className="btn btn-ghost btn-circle text-2xl">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-circle text-2xl "
+            >
               <div className="indicator">
-                <span>{toggle ? <BsFillSunFill /> : <BsFillMoonFill />}</span>
+                <span>
+                  {cookies.toggle === "true" ? <BsFillSunFill /> : <BsFillMoonFill />}
+                </span>
+
               </div>
             </label>
           </div>
-          {cookies?.role === "user" && cookies?.hoosting ? (
+          {cookies?.role && ["user", "hoster"].includes(cookies.role) ? (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img
-                    src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg"
-                    alt="Profile"
-                  />
+                  <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
                 </div>
               </label>
               <ul
@@ -125,7 +127,7 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn btn-ghost bg-white text-primary hover:bg-opacity-10 hover:text-black ml-5 mr-5 rounded-xl">
+              <button className="btn btn-ghost bg-primary text-white hover:bg-black ml-5 mr-5 rounded-xl">
                 Login
               </button>
             </Link>
@@ -134,7 +136,8 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
       </div>
       <div>{children}</div>
     </div>
-  );
+  </>
+);
 };
 
 export default Navbar;

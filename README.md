@@ -1,4 +1,19 @@
-# FE-AirBnB
+# AirBnB App
 
-## Figma
-<a href="https://www.figma.com/file/F96s3w8l7lkxGcKwPa21W7/AirBnB?type=design&node-id=12-284&t=cKilW3IayyBNvtiM-0"> Figma</a>
+## Frond End Developer
+
+ 1. [Nur Cahyanto](https://github.com/Razdan12)
+ 2. Robbi Romadhoni
+
+## Back End Developer
+1. Wayan Putri
+2. Dimas Pradana
+
+# ScreenShoots
+
+
+
+## Feature
+
+ - List Homstay
+ - Login Register

@@ -12,7 +12,7 @@ interface cardProps {
     place?: string;
     Host_id?: number;
 }
-const Card: FC<cardProps> = ({ image, name, price, feature, rating, Host_id }) => {
+const Card: FC<cardProps> = ({ image, name, price, feature, rating, Host_id, place }) => {
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies();
 
@@ -23,11 +23,11 @@ const Card: FC<cardProps> = ({ image, name, price, feature, rating, Host_id }) =
 
     return (
         <div >
-            <div className="card w-80 bg-base-100 shadow-xl">
+            <div className="card w-80 bg-base-100 shadow-xl z-0">
                 <figure><img src={image} alt="Shoes" /></figure>
                 <div className="absolute top-0 right-0 mr-5 mt-3">
                     <div className="w-fit p-5 h-10 rounded-full bg-white bg-opacity-50 flex justify-center items-center">
-                        <p className="text-black font-medium">📍 senayan</p>
+                        <p className="text-black font-medium">📍 {place}</p>
                     </div>
                 </div>
                 <div className="card-body">
