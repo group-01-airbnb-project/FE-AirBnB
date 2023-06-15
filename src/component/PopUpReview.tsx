@@ -10,8 +10,8 @@ const PopUpReview: React.FC<PopUpProps> = ({ setShowPopup }) => {
   };
 
   return (
-    <div className="w-full h-full bg-gray-800 bg-opacity-50 absolute top-0 z-20 overflow-x-hidden overflow-y-hidden ">
-      <div className="flex justify-center items-center h-full mt-10">
+    <div className="w-screen h-screen bg-gray-800 bg-opacity-50 absolute top-0 z-20 overflow-x-hidden overflow-y-hidden">
+      <div className="flex justify-center items-center h-screen mt-10">
         <div className="w-1/2 px-8 pt-6 pb-8">
           <div className="flex justify-center">
             <div className="w-full bg-white shadow-lg rounded px-8 py-5">
@@ -38,14 +38,14 @@ const PopUpReview: React.FC<PopUpProps> = ({ setShowPopup }) => {
 
               <button
                 onClick={closePopUp}
-                className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline mr-3"
+                className="w-1/4 bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline mr-3"
                 type="button"
               >
                 Batal
               </button>
               <button
                 // onClick={HandlePopUp}
-                className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+                className="w-1/4 bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
                 type="button"
               >
                 Kirim Review
