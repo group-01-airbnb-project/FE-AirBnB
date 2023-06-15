@@ -33,6 +33,7 @@ const TripPage = () => {
                 <p className="mb-3">Villa Master Lorem</p>
                 <div className="flex flex-row w-fit gap-5 mb-3">
                   {/* <DatePicker
+
               selected={DateCheckin}
               onChange={handleDateCheckin}
               dateFormat="dd/MM/yyyy"
