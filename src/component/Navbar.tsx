@@ -1,9 +1,9 @@
 import { BsFillBellFill } from "react-icons/bs";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 interface NavbarProps {
   children?: React.ReactNode;
 }
@@ -14,31 +14,26 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
 
   const Logout = () => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Logout '
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Logout ",
     }).then((result) => {
       if (result.isConfirmed) {
-        removeCookie('token', {})
-        removeCookie('role', {})
-        Swal.fire(
-          'Logout!',
-          'Anda Telah Logout',
-          'success'
-        )
-        navigate("/")
+        removeCookie("token", {});
+        removeCookie("role", {});
+        Swal.fire("Logout!", "Anda Telah Logout", "success");
+        navigate("/");
       }
-    })
-   
-  }
+    });
+  };
   return (
     <>
       <div className="absolute w-full h-screen top-0 overflow-x-hidden">
-        <div className="navbar bg-base-100 shadow-xl sticky top-0 z-20">
+        <div className="navbar bg-primary text-white shadow-xl sticky top-0 z-20">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -69,15 +64,19 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
                 </li>
               </ul>
             </div>
-            <a className="btn btn-ghost normal-case text-xl">AirBnB</a>
+            <a className="btn btn-ghost normal-case text-xl hover:text-white">
+              AirBnB
+            </a>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="text-white">
+                  Home
+                </Link>
               </li>
               <li>
-                <a>Saved</a>
+                <a className="text-white">Saved</a>
               </li>
             </ul>
           </div>
@@ -97,9 +96,7 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
                 </div>
               </label>
             </div>
-            {cookies?.role == "user" && "hoosting" ?
-
-
+            {cookies?.role == "user" && "hoosting" ? (
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
@@ -121,11 +118,13 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
                   </li>
                 </ul>
               </div>
-              :
+            ) : (
               <Link to="/login">
-                <button className="btn btn-warning ml-5 mr-5 rounded-xl">Login</button>
+                <button className="btn btn-ghost bg-white text-primary hover:bg-black ml-5 mr-5 rounded-xl">
+                  Login
+                </button>
               </Link>
-            }
+            )}
           </div>
         </div>
         <div>{children}</div>
