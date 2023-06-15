@@ -71,7 +71,7 @@ const PopUpListing: React.FC<PopUpProps> = ({ setShowPopup }) => {
                                 <label className="label">
                                     <span className="label-text">Description</span>
                                 </label>
-                                <textarea className="textarea textarea-warning w-full" placeholder="Bio"></textarea>
+                                <textarea className="textarea textarea-warning w-full bg-white" placeholder="Deskription"></textarea>
                             </div>
                             <div className="mt-5">
                                 <label className="label">

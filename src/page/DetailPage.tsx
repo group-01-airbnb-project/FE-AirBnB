@@ -5,6 +5,7 @@ const DetailPage = () => {
   const [DateCheckin, setDateCheckin] = useState("");
   const [DateCheckout, setDateCheckout] = useState("");
 
+
   const handleDateCheckin = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateCheckin(e.target.value);
   };
