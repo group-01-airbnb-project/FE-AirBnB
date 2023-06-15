@@ -44,7 +44,7 @@ const LoginPage: React.FC = () => {
 
       setLoading(true)
       const response = await api.Login(email, password);
-      console.log(response.data.data)
+     
       setCookie('token', response?.data?.data?.accessToken);
       setCookie('role', response?.data?.data?.user?.role);
       

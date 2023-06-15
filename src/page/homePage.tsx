@@ -16,7 +16,7 @@ const HomePage = () => {
         setLoading(true)
         const response = await api.GetHomestay();
         setHomestay(response.data)
-        console.log(response.data)
+      
 
       } catch (error) {
         setEror(true)
@@ -40,7 +40,12 @@ const HomePage = () => {
             {homestay?.data?.map((item: any, index: number) => (
               <Card
                 key={index}
-                image='https://ik.imagekit.io/tvlk/blog/2022/05/Vila-Instagenic-di-Puncak-Rumah-Prabu-Villa-.jpeg?tr=dpr-2,w-675'
+                place={item.location}
+                // image={
+                  
+                //   item?.image_link?.map((img: any)=>(img.image_link))
+                // }
+                image="https://cf.bstatic.com/xdata/images/hotel/max1024x768/334276976.jpg?k=2a599cafc32bb045a5e733e36d2a50429dcedcb573cf43d29e479ddcb419ef00&o=&hp=1"
                 name={item.title}
                 price={`Rp.${item.price}`}
                 feature={item.facilities}

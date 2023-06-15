@@ -4,7 +4,6 @@ import api from '../axios/RestApi';
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Swal from "sweetalert2";
 
 const schema = Yup.object({
     name: Yup.string().required("email required"),
@@ -20,7 +19,7 @@ interface PopUpProps {
 
 const ProfilEdit: React.FC<PopUpProps> = ({ setPopUp }) =>{
     const [Data, setData] = useState<any>([]);
-    
+    console.log(Data)
     const closePopUp = () => {
         setPopUp(false);
     };
@@ -71,7 +70,7 @@ const ProfilEdit: React.FC<PopUpProps> = ({ setPopUp }) =>{
                     id="user"
                     name="name"
                     placeholder="Username"
-                    // value={formik.values.name}
+                    value={formik.values.name}
                     // onChange={formik.handleChange}
                     required
                     className="input input-bordered input-warning w-full"
