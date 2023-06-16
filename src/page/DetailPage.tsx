@@ -1,10 +1,35 @@
 import Navbar from "../component/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import api from '../axios/RestApi';
+import { useCookies } from "react-cookie";
 
 const DetailPage = () => {
+  const [cookies] = useCookies();
   const [DateCheckin, setDateCheckin] = useState("");
   const [DateCheckout, setDateCheckout] = useState("");
+  const [Data, setData] = useState<any>([]);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+
+        const response = await api.GetHomestaybyId(cookies.homestay_id);
+        setData(response.data)
+
+
+      } catch (error) {
+        console.log(error)
+
+      }
+      //  finally {
+      //   setLoading(false)
+      // }
+    };
+
+    fetchUsers();
+
+  }, []);
+  console.log(Data)
 
   const handleDateCheckin = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateCheckin(e.target.value);
@@ -51,19 +76,16 @@ const DetailPage = () => {
                 <div className="m-5 w-full ">
                   <div className="flex w-full justify-between">
                     <p className="text-4xl font-bold justify-start">
-                      Villa bogor baru
+                      {Data?.data?.title}
                     </p>
-                    <div className="badge badge-secondary mr-10 ">⭐23 / 5</div>
+                    <div className="badge badge-secondary mr-10 ">⭐{Data?.data?.rating} / 5</div>
                   </div>
                   <div className="mt-3">
                     <p className="mt-2 mb-2 font-medium">
-                      2 kamar + AC + Parkir
+                      {Data?.data?.facilities}
                     </p>
                     <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Perferendis hic porro sed. Quae blanditiis alias sapiente
-                      fuga ullam ducimus, necessitatibus sit aliquid incidunt
-                      quia, a repellendus omnis fugiat earum voluptas!
+                      {Data?.data?.description}
                     </p>
                   </div>
                 </div>
@@ -73,7 +95,7 @@ const DetailPage = () => {
                   <div>
                     <p className="mt-3">
                       <span className="text-primary font-bold text-3xl">
-                        Rp199.000
+                        Rp. {Data?.data?.price}
                       </span>{" "}
                       / malam
                     </p>
@@ -115,32 +137,22 @@ const DetailPage = () => {
               <h1 className="mt-3 font-bold text-3xl mb-3">Reviews</h1>
 
               <div className="flex flex-col">
-                <div className="flex flex-row mt-5">
-                  <div className="w-7 rounded-full mr-3">
-                    <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
+                {Data?.data?.reviews.map((item: any) => (
+
+                  <div>
+                    <div className="flex flex-row mt-5">
+                      <div className="w-7 rounded-full mr-3">
+                        <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
+                      </div>
+                      <span>{item.customer_id}</span>
+                    </div>
+                    <span className="mt-2">⭐{item.ratings}</span><br/>
+                    <span className="mt-2">
+                      {item.reviews}
+                    </span>
                   </div>
-                  <span>Travis Pastrana</span>
-                </div>
-                <span className="mt-2">⭐ ⭐ ⭐ ⭐ ⭐</span>
-                <span className="mt-2">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Laudantium quo, reprehenderit aut amet porro blanditiis
-                  deserunt recusandae vel, dicta ea ullam consequatur corrupti
-                  nemo, iste est at veniam! Veniam, repellat?
-                </span>
-                <div className="flex flex-row mt-5">
-                  <div className="w-7 rounded-full mr-3">
-                    <img src="https://static.vecteezy.com/system/resources/previews/007/296/443/original/user-icon-person-icon-client-symbol-profile-icon-vector.jpg" />
-                  </div>
-                  <span>Bruno Guimaraes</span>
-                </div>
-                <span className="mt-2">⭐ ⭐ ⭐ ⭐ ⭐</span>
-                <span className="mt-2">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Laudantium quo, reprehenderit aut amet porro blanditiis
-                  deserunt recusandae vel, dicta ea ullam consequatur corrupti
-                  nemo, iste est at veniam! Veniam, repellat?
-                </span>
+
+                ))}
               </div>
             </div>
           </div>

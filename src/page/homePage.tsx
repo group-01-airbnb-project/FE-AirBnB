@@ -41,11 +41,11 @@ const HomePage = () => {
               <Card
                 key={index}
                 place={item.location}
-                // image={
+                image={
                   
-                //   item?.image_link?.map((img: any)=>(img.image_link))
-                // }
-                image="https://cf.bstatic.com/xdata/images/hotel/max1024x768/334276976.jpg?k=2a599cafc32bb045a5e733e36d2a50429dcedcb573cf43d29e479ddcb419ef00&o=&hp=1"
+                  item?.image_link?.map((img: any)=>(img.image_link))
+                }
+                // image="https://cf.bstatic.com/xdata/images/hotel/max1024x768/334276976.jpg?k=2a599cafc32bb045a5e733e36d2a50429dcedcb573cf43d29e479ddcb419ef00&o=&hp=1"
                 name={item.title}
                 price={`Rp.${item.price}`}
                 feature={item.facilities}

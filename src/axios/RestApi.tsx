@@ -1,5 +1,5 @@
 import axios, { AxiosPromise } from 'axios';
-import { CreateHomeStay, GetHomeStay, GetUser, LoginResponse, RegisterResponse, Upgrade } from './utils/InterfaceApi';
+import { CreateHomeStay, GetHomeStay, GetHomebyId, GetUser, LoginResponse, RegisterResponse, Upgrade } from './utils/InterfaceApi';
 
 const instance = axios.create({
   baseURL: 'https://group1.altapro.online/',
@@ -95,6 +95,12 @@ const api = {
     instance({
       method: 'GET',
       url: '/homestays',
+    }),
+
+  GetHomestaybyId: (id: any): AxiosPromise<GetHomebyId[]> =>
+    instance({
+      method: 'GET',
+      url: `/homestays/${id}`,
     }),
 };
 

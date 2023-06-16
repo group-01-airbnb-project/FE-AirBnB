@@ -62,3 +62,20 @@ export interface CreateHomeStay {
 export interface Upgrade {
   role: string;
 }
+
+export interface GetHomebyId{
+  homestay_id: number,
+    host_id: number,
+    title: number,
+    description: string,
+    location: string,
+    price: number,
+    facilities: string,
+    rating: number,
+    reviews: 
+      {
+        customer_id: number,
+        reviews: string,
+        ratings:string
+      }
+}
