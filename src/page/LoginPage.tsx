@@ -17,7 +17,7 @@ const LoginPage: React.FC = () => {
   const [loading, setLoading] =  useState<boolean>(false)
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies();
-  
+  console.log(cookies.role)
   const formik = useFormik({
     initialValues: {
       password: "",

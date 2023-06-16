@@ -1,4 +1,3 @@
-import { string } from "yup";
 
 export interface LoginResponse {
   data: {

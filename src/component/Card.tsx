@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { BsGeoAltFill } from "react-icons/bs";
+import { FC } from "react"
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 interface cardProps {
@@ -15,6 +14,7 @@ interface cardProps {
 const Card: FC<cardProps> = ({ image, name, price, feature, rating, Host_id, place }) => {
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies();
+    console.log(cookies.role)
 
     const HandleDetail = (id: any) => {
         setCookie('homestay_id', id);
